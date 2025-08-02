@@ -9,4 +9,4 @@ This repository contains the codes required to operate the Robotic Arm designed 
 - [PlatformIO IDE](https://platformio.org)
 
 ## License
-This project is licensed under the GPLv3 License - see the [LICENSE file](../LICENSE) for details
+This project is licensed under the GPLv3 License - see [LICENSE](../LICENSE.md) for details
