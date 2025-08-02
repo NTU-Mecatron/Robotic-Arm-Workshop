@@ -21,8 +21,8 @@ const uint8_t updateServo_delay_ms = 5;
 
 const uint8_t js_rateOfChange = 4;
 const uint8_t base_rateOfChange = 4;
-const uint8_t shoulder_rateOfChange = 2;
-const uint8_t elbow_rateOfChange = 2;
+const uint8_t shoulder_rateOfChange = 1;
+const uint8_t elbow_rateOfChange = 1;
 const uint8_t clamp_rateOfChange = 1;
 
 // glob defs
