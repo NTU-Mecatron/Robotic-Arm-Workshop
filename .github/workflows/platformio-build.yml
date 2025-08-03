@@ -36,5 +36,6 @@ jobs:
 
       - name: Run PlatformIO Build (All Envs)
         run: |
-          cd sdk/roboarm
+          cd SDK/roboarm
           platformio run
+
