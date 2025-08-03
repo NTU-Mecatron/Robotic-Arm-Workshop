@@ -9,7 +9,7 @@ This repository contains both the [hardware](../HDK/) and [software](../SDK/) co
   Includes source schematics and PCB design files used in the workshop Detailed hardware documentation is available [here](./HDK/).
 
 - **[SDK](../SDK/):** Software Development Kit  
-  Contains the firmware and host-side code needed to operate the EduBoat system. Detailed software documentation is available [here](./SDK/).
+  Contains the firmware and host-side code needed to operate RoboArm. Detailed software documentation is available [here](./SDK/).
 
 ---
 
