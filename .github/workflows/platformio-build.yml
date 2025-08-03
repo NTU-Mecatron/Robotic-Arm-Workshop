@@ -35,4 +35,6 @@ jobs:
           key: platformio-${{ runner.os }}-${{ hashFiles('platformio.ini') }}
 
       - name: Run PlatformIO Build (All Envs)
-        run: platformio run
+        run: |
+          cd sdk/roboarm
+          platformio run
