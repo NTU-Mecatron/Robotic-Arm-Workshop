@@ -17,13 +17,13 @@
 
 // change timing delays for smoother runs
 const uint8_t readJS_delay_ms = 10;
-const uint8_t updateServo_delay_ms = 5;
+const uint8_t updateServo_delay_ms = 10;
 
 const uint8_t js_rateOfChange = 4;
 const uint8_t base_rateOfChange = 4;
 const uint8_t shoulder_rateOfChange = 1;
 const uint8_t elbow_rateOfChange = 1;
-const uint8_t clamp_rateOfChange = 1;
+const uint8_t clamp_rateOfChange = 4;
 
 // glob defs
 #define servo_base_pin 8
@@ -36,10 +36,10 @@ const uint8_t clamp_rateOfChange = 1;
 #define js_up_thresh 680
 #define js_down_thresh 340
 
-#define button_left_elbow_pin 3
-#define button_right_elbow_pin 5
-#define button_up_clamp_pin 2
-#define button_down_clamp_pin 4
+#define button_down_elbow_pin 2
+#define button_up_elbow_pin 4
+#define button_right_clamp_pin 5
+#define button_left_clamp_pin 3
 
 uint16_t js_adc_base;
 uint16_t js_adc_shoulder;
@@ -52,12 +52,12 @@ uint8_t button_state_down_clamp = 0;
 uint8_t targ_base_deg = 0;
 uint8_t targ_shoulder_deg = 0;
 uint8_t targ_elbow_deg = 160;
-uint8_t targ_clamp_deg = 0;
+uint8_t targ_clamp_deg = 92;
 
 uint8_t real_base_deg = 0;
 uint8_t real_shoulder_deg = 0;
 uint8_t real_elbow_deg = 160;
-uint8_t real_clamp_deg = 0;
+uint8_t real_clamp_deg = 92;
 
 const uint8_t max_base_deg = 180;
 const uint8_t min_base_deg = 0;
@@ -93,10 +93,10 @@ void setup()
   servo_shoulder.attach(servo_shoulder_pin);
   servo_elbow.attach(servo_elbow_pin);
   servo_clamp.attach(servo_clamp_pin);
-  pinMode(button_right_elbow_pin, INPUT_PULLUP);
-  pinMode(button_left_elbow_pin, INPUT_PULLUP);
-  pinMode(button_up_clamp_pin, INPUT_PULLUP);
-  pinMode(button_down_clamp_pin, INPUT_PULLUP);
+  pinMode(button_up_elbow_pin, INPUT_PULLUP);
+  pinMode(button_down_elbow_pin, INPUT_PULLUP);
+  pinMode(button_right_clamp_pin, INPUT_PULLUP);
+  pinMode(button_left_clamp_pin, INPUT_PULLUP);
 }
 
 void loop()
@@ -185,22 +185,22 @@ void readJoystick()
     targ_shoulder_deg = max(targ_shoulder_deg - js_rateOfChange, min_shoulder_deg);
   }
 
-  button_state_left_elbow = digitalRead(button_left_elbow_pin);
+  button_state_left_elbow = digitalRead(button_down_elbow_pin);
   if (button_state_left_elbow == 0)
   {
     targ_elbow_deg = max(targ_elbow_deg - js_rateOfChange, min_elbow_deg);
   }
-  button_state_right_elbow = digitalRead(button_right_elbow_pin);
+  button_state_right_elbow = digitalRead(button_up_elbow_pin);
   if (button_state_right_elbow == 0)
   {
     targ_elbow_deg = min(targ_elbow_deg + js_rateOfChange, max_elbow_deg);
   }
-  button_state_up_clamp = digitalRead(button_up_clamp_pin);
+  button_state_up_clamp = digitalRead(button_right_clamp_pin);
   if (button_state_up_clamp == 0)
   {
     targ_clamp_deg = min(targ_clamp_deg + js_rateOfChange, max_clamp_deg);
   }
-  button_state_down_clamp = digitalRead(button_down_clamp_pin);
+  button_state_down_clamp = digitalRead(button_left_clamp_pin);
   if (button_state_down_clamp == 0)
   {
     targ_clamp_deg = max(targ_clamp_deg - js_rateOfChange, min_clamp_deg);
