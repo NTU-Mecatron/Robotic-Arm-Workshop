@@ -52,12 +52,12 @@ uint8_t button_state_down_clamp = 0;
 uint8_t targ_base_deg = 0;
 uint8_t targ_shoulder_deg = 0;
 uint8_t targ_elbow_deg = 160;
-uint8_t targ_clamp_deg = 15;
+uint8_t targ_clamp_deg = 0;
 
 uint8_t real_base_deg = 0;
 uint8_t real_shoulder_deg = 0;
 uint8_t real_elbow_deg = 160;
-uint8_t real_clamp_deg = 15;
+uint8_t real_clamp_deg = 0;
 
 const uint8_t max_base_deg = 180;
 const uint8_t min_base_deg = 0;
@@ -65,8 +65,8 @@ const uint8_t max_shoulder_deg = 60;
 const uint8_t min_shoulder_deg = 0;
 const uint8_t max_elbow_deg = 160;
 const uint8_t min_elbow_deg = 0;
-const uint8_t max_clamp_deg = 23;
-const uint8_t min_clamp_deg = 15;
+const uint8_t max_clamp_deg = 124;
+const uint8_t min_clamp_deg = 0;
 
 // obj defs
 Servo servo_base;
