@@ -95,7 +95,11 @@ void setup()
   servo_shoulder.attach(servo_shoulder_pin);
   servo_elbow.attach(servo_elbow_pin);
   servo_clamp.attach(servo_clamp_pin);
+
+  // servo tester set to 0deg for ease of arm assembly
   servo_tester.attach(servo_tester_pin);
+  servo_tester.write(0);
+  
   pinMode(button_up_elbow_pin, INPUT_PULLUP);
   pinMode(button_down_elbow_pin, INPUT_PULLUP);
   pinMode(button_right_clamp_pin, INPUT_PULLUP);
@@ -116,8 +120,6 @@ void loop()
     nextTs_UpdatedServos = timeNow + updateServo_delay_ms;
     moveServos();
   }
-
-  servo_tester.write(0);
 
   Serial.print("base degree : ");
   Serial.print(real_base_deg);
@@ -248,3 +250,4 @@ void moveServos()
   servo_elbow.write(real_elbow_deg);
   servo_clamp.write(real_clamp_deg);
 }
+
