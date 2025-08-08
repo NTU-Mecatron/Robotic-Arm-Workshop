@@ -30,6 +30,7 @@ const uint8_t clamp_rateOfChange = 4;
 #define servo_shoulder_pin 9
 #define servo_elbow_pin 10
 #define servo_clamp_pin 11
+#define servo_tester_pin 12
 
 #define joystick1_x_base A0
 #define joystick1_y_shoulder A1
@@ -73,6 +74,7 @@ Servo servo_base;
 Servo servo_shoulder;
 Servo servo_elbow;
 Servo servo_clamp;
+Servo servo_tester;
 
 // vol defs
 volatile uint64_t nextTs_ReadJS = 0;
@@ -93,6 +95,7 @@ void setup()
   servo_shoulder.attach(servo_shoulder_pin);
   servo_elbow.attach(servo_elbow_pin);
   servo_clamp.attach(servo_clamp_pin);
+  servo_tester.attach(servo_tester_pin);
   pinMode(button_up_elbow_pin, INPUT_PULLUP);
   pinMode(button_down_elbow_pin, INPUT_PULLUP);
   pinMode(button_right_clamp_pin, INPUT_PULLUP);
@@ -113,6 +116,8 @@ void loop()
     nextTs_UpdatedServos = timeNow + updateServo_delay_ms;
     moveServos();
   }
+
+  servo_tester.write(0);
 
   Serial.print("base degree : ");
   Serial.print(real_base_deg);
